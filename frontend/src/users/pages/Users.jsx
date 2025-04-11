@@ -4,10 +4,17 @@ const Users = () => {
     const USERS = [
         {
           id: 'u1',
-          name: 'Robert Hawkins',
+          name: 'Дмитрий',
           image:
             'https://randomuser.me/api/portraits/men/81.jpg',
           places: 3
+        },
+        {
+          id: 'u2',
+          name: 'Василий',
+          image:
+            'https://randomuser.me/api/portraits/men/82.jpg',
+          places: 5
         }
       ];
     return ( 
