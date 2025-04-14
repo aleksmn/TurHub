@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Users from "./users/pages/Users";
+import NewPlace from "./places/pages/NewPlace";
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -14,10 +19,12 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      {console.log(message)}
-      <h1>Добро пожаловать на TurHub!</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Users/>}></Route>
+        <Route path="/places/new" element={<NewPlace/>}></Route>
+      </Routes>    
+    </BrowserRouter>
   );
 }
 
