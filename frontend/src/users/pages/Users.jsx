@@ -20,6 +20,12 @@ const Users = () => {
             image: 'https://randomuser.me/api/portraits/men/85.jpg',
             places: 4
         },
+        {
+            id: 'u4',
+            name: 'Юлия',
+            image: 'https://randomuser.me/api/portraits/women/84.jpg',
+            places: 10
+        },
     ]
 
 

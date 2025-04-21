@@ -8,6 +8,19 @@
 	box-sizing: border-box;
 }
 
-body {
+html {
 	font-family: sans-serif;
 }
+
+body {
+    background: #FFF6DA;
+}
+
+.center {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* https://colorhunt.co/palette/a94a4af4d793fff6da889e73 */
