@@ -3,9 +3,9 @@
     margin:0;
     padding: 0;
     text-decoration: none;
-    color:black;
     font-weight: normal;
 	box-sizing: border-box;
+    color: black;
 }
 
 html {
