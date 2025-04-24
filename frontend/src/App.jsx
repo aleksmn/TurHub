@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 import Users from "./users/pages/Users";
 import NewPlace from "./places/pages/NewPlace";
+import MainNavigation from "./shared/components/Navigation/MainNavigation";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -19,11 +20,14 @@ function App() {
 
   return (
     <BrowserRouter>
+      <MainNavigation />
+      <main>
       <Routes>
         <Route path="/" element={<Users/>} exact></Route>
         <Route path="/places/new" element={<NewPlace/>} exact></Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      </main>
       
     </BrowserRouter>
   );
