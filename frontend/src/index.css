@@ -1,3 +1,11 @@
+:root {
+    --main-bg-color: #FFF6DA;
+    --primary-color: #889E73;
+    --secondary-color: #F4D793;
+    --accent-color: #A94A4A;
+    --black-color: #292929;
+}
+
 * {
     list-style: none;
     margin: 0;
@@ -14,7 +22,7 @@ html {
 }
 
 body {
-    background: #FFF6DA;
+    background: var(--main-bg-color);
 }
 
 .center {
