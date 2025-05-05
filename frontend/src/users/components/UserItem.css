@@ -16,7 +16,7 @@
   
   .user-item a:hover,
   .user-item a:active {
-    background: #ffd900;
+    background: #F4D793;
   }
   
   .user-item__content {
@@ -40,7 +40,7 @@
   .user-item:active h2,
   .user-item:hover h3,
   .user-item:active h3 {
-    color: #c30a88;
+    color: #A94A4A;
   }
   
   .user-item__info h3 {

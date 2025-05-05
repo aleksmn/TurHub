@@ -14,7 +14,7 @@ html {
 }
 
 body {
-    background: #cce8f1;
+    background: #FFF6DA;
 }
 
 .center {
@@ -44,3 +44,5 @@ body {
     opacity: 0;
     transition: all 200ms;
 }
+
+/* https://colorhunt.co/palette/a94a4af4d793fff6da889e73 */
