@@ -1,7 +1,9 @@
 const NewPlace = () => {
-    return ( 
-        <h2>Добавить место</h2>
-     );
+    return (
+        <div className="center">
+            <h2>Добавить место</h2>
+        </div>
+    );
 }
- 
+
 export default NewPlace;
