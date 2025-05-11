@@ -8,15 +8,15 @@ import MainNavigation from "./shared/components/Navigation/MainNavigation";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 function App() {
-  // const [message, setMessage] = useState();
+  const [message, setMessage] = useState();
 
-  // // Получим сообщение с сервера
-  // useEffect(() => {
-  //   fetch(apiUrl)
-  //     .then((res) => res.json())
-  //     .then((data) => setMessage(data.message));
+  // Получим сообщение с сервера
+  useEffect(() => {
+    fetch(apiUrl)
+      .then((res) => res.json())
+      .then((data) => setMessage(data.message));
 
-  // }, []);
+  }, []);
 
   return (
     <BrowserRouter>
@@ -28,7 +28,7 @@ function App() {
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       </main>
-      
+      {/* {console.log(message)} */}
     </BrowserRouter>
   );
 }
