@@ -1,4 +1,5 @@
 import Card from '../../shared/components/UIElements/Card';
+import Button from '../../shared/components/FormElements/Button';
 
 import './PlaceItem.css';
 
@@ -17,9 +18,9 @@ const PlaceItem = props => {
         </div>
 
         <div className="place-item__actions">
-          <button>Посмотреть на карте</button>
-          <button>Изменить</button>
-          <button>Удалить</button>
+          <Button inverse>Посмотреть на карте</Button>
+          <Button to={`/places/${props.id}`}>Изменить</Button>
+          <Button danger>Удалить</Button>
         </div>
       </li>
     </Card>

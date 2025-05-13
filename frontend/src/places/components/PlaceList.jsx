@@ -1,4 +1,5 @@
 import Card from '../../shared/components/UIElements/Card';
+import Button from '../../shared/components/FormElements/Button';
 import PlaceItem from './PlaceItem';
 
 import './PlaceList.css';
@@ -10,7 +11,8 @@ const PlaceList = props => {
       <div className='place-list center'>
         <Card>
           <h2>Места не найдены</h2>
-          <button>Добавить место</button>
+          <br />
+          <Button>Добавить место</Button>
         </Card>
       </div>
     );
