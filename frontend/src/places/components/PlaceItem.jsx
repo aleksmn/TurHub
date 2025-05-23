@@ -1,29 +1,51 @@
+import { useState } from 'react';
 import Card from '../../shared/components/UIElements/Card';
 import Button from '../../shared/components/FormElements/Button';
+import Modal from '../../shared/components/UIElements/Modal';
 
 import './PlaceItem.css';
 
 const PlaceItem = props => {
+  const [showMap, setShowMap] = useState(false);
+
+  const openMapHandler = () => setShowMap(true);
+
+  const closeMapHandler = () => setShowMap(false);
+
   return (
-    <Card className="place-item__content">
+    <>
+      <Modal show={showMap}
+        onCancel={closeMapHandler}
+        header={props.address}
+        contentClass="place-item__modal-content"
+        footerClass="place-item__modal-actions"
+        footer={<Button onClick={closeMapHandler}>Закрыть</Button>}
+      >
+        <div className="map-container">
+          <h2>Карта</h2>
+        </div>
+      </Modal>
+
       <li className="place-item">
-        <div className="place-item__image">
-          <img src={props.image} />
-        </div>
+        <Card className="place-item__content">
+          <div className="place-item__image">
+            <img src={props.image} />
+          </div>
 
-        <div className="place-item__info">
-          <h2>{props.title}</h2>
-          <address>{props.address}</address>
-          <p>{props.description}</p>
-        </div>
+          <div className="place-item__info">
+            <h2>{props.title}</h2>
+            <address>{props.address}</address>
+            <p>{props.description}</p>
+          </div>
 
-        <div className="place-item__actions">
-          <Button inverse>Посмотреть на карте</Button>
-          <Button to={`/places/${props.id}`}>Изменить</Button>
-          <Button danger>Удалить</Button>
-        </div>
+          <div className="place-item__actions">
+            <Button inverse onClick={openMapHandler}>Посмотреть на карте</Button>
+            <Button to={`/places/${props.id}`}>Изменить</Button>
+            <Button danger>Удалить</Button>
+          </div>
+        </Card>
       </li>
-    </Card>
+    </>
   );
 }
 
