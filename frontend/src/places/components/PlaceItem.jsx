@@ -32,7 +32,7 @@ const PlaceItem = props => {
       <li className="place-item">
         <Card className="place-item__content">
           <div className="place-item__image">
-            <img src={props.image} />
+            <img src={"/images/"+ props.image} />
           </div>
 
           <div className="place-item__info">
