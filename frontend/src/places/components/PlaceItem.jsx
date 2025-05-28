@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Card from '../../shared/components/UIElements/Card';
 import Button from '../../shared/components/FormElements/Button';
 import Modal from '../../shared/components/UIElements/Modal';
+import { YMaps, Map } from '@pbe/react-yandex-maps';
 
 import './PlaceItem.css';
 
@@ -22,7 +23,9 @@ const PlaceItem = props => {
         footer={<Button onClick={closeMapHandler}>Закрыть</Button>}
       >
         <div className="map-container">
-          <h2>Карта</h2>
+          <YMaps query={{ lang: 'ru_RU' }}>
+            <Map defaultState={{ center: [props.location.lat, props.location.lng], zoom: 12 }} style={{width:"100%", height:"100%"}}/>
+          </YMaps>
         </div>
       </Modal>
 
