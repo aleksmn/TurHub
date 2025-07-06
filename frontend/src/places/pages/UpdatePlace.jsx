@@ -4,6 +4,8 @@ import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/utils/validators';
 
+import './PlaceForm.css';
+
 const PLACES = [
     {
         id: 'p1',
@@ -46,7 +48,7 @@ const UpdatePlace = () => {
     }
 
     return (
-        <form>
+        <form className="place-form">
             <Input
                 id="title"
                 element="input"
