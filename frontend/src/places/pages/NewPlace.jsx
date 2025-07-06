@@ -38,6 +38,10 @@ const NewPlace = () => {
             description: {
                 value: '',
                 isValid: false
+            },
+            address: {
+                value: '',
+                isValid: false
             }
         },
         isValid: false
@@ -52,9 +56,14 @@ const NewPlace = () => {
         });
     }, []);
 
+    const placeSubmitHandler = event => {
+        event.preventDefault();
+        console.log(formState.inputs); // send to backend
+    };
+
     return (
-        
-        <form className="place-form">
+
+        <form className="place-form" onSubmit={placeSubmitHandler}>
             <Input
                 id="title"
                 element="input"
@@ -70,6 +79,15 @@ const NewPlace = () => {
                 validators={[VALIDATOR_MINLENGTH(10)]}
                 errorText="Введите описание места"
                 onInput={inputHandler} />
+
+            <Input
+                id="address"
+                element="input"
+                label="Адрес"
+                validators={[VALIDATOR_REQUIRE()]}
+                errorText="Введите адрес места"
+                onInput={inputHandler}
+            />
 
 
             <Button type="submit" disabled={!formState.isValid}>
