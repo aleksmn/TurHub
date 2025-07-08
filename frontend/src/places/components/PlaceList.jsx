@@ -12,7 +12,7 @@ const PlaceList = props => {
         <Card>
           <h2>Места не найдены</h2>
           <br />
-          <Button>Добавить место</Button>
+          <Button to="/places/new">Добавить место</Button>
         </Card>
       </div>
     );
