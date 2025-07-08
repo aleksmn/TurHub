@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Input from '../../shared/components/FormElements/Input';
@@ -39,25 +40,44 @@ const UpdatePlace = () => {
     // получаем id из адресной строки (URL)
     const placeId = useParams().placeId;
 
-    const identifiedPlace = PLACES.find(p => p.id === placeId);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const [formState, inputHandler] = useForm(
+    const [formState, inputHandler, setFormData] = useForm(
         {
             title: {
-                value: identifiedPlace.title,
-                isValid: true
+                value: '',
+                isValid: false
             },
             description: {
-                value: identifiedPlace.description,
-                isValid: true
-            },
-            address: {
-                value: identifiedPlace.address,
-                isValid: true
+                value: '',
+                isValid: false
             }
         },
-        true
+        false
     );
+
+    const identifiedPlace = PLACES.find(p => p.id === placeId);
+
+    useEffect(() => {
+        setFormData(
+            {
+                title: {
+                    value: identifiedPlace.title,
+                    isValid: true
+                },
+                description: {
+                    value: identifiedPlace.description,
+                    isValid: true
+                },
+                address: {
+                    value: identifiedPlace.address,
+                    isValid: true
+                }
+            },
+            true
+        );
+        setIsLoading(false);
+    }, [setFormData, identifiedPlace]);
 
     const placeUpdateSubmitHandler = event => {
         event.preventDefault();
@@ -68,6 +88,14 @@ const UpdatePlace = () => {
         return (
             <div className="center">
                 <h2>Место не найдено!</h2>
+            </div>
+        );
+    }
+
+    if (isLoading) {
+        return (
+            <div className="center">
+                <h2>Загрузка...</h2>
             </div>
         );
     }
