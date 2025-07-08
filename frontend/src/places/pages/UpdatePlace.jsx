@@ -35,6 +35,7 @@ const PLACES = [
 ];
 
 const UpdatePlace = () => {
+    // получаем id из адресной строки (URL)
     const placeId = useParams().placeId;
 
     const identifiedPlace = PLACES.find(p => p.id === placeId);
@@ -53,7 +54,7 @@ const UpdatePlace = () => {
                 id="title"
                 element="input"
                 type="text"
-                label="Title"
+                label="Название"
                 validators={[VALIDATOR_REQUIRE()]}
                 errorText="Введите название места"
                 onInput={() => { }}
@@ -63,11 +64,22 @@ const UpdatePlace = () => {
             <Input
                 id="description"
                 element="textarea"
-                label="Description"
+                label="Описание"
                 validators={[VALIDATOR_MINLENGTH(10)]}
                 errorText="Введите описание места"
                 onInput={() => { }}
                 value={identifiedPlace.description}
+                valid={true}
+            />
+
+            <Input
+                id="address"
+                element="input"
+                label="Адрес"
+                validators={[VALIDATOR_REQUIRE()]}
+                errorText="Введите адрес места"
+                onInput={() => { }}
+                value={identifiedPlace.address}
                 valid={true}
             />
             <Button type="submit" disabled={true}>
