@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/utils/validators';
+import { useForm } from '../../shared/hooks/form-hook';
 
 import './PlaceForm.css';
 
@@ -40,6 +41,29 @@ const UpdatePlace = () => {
 
     const identifiedPlace = PLACES.find(p => p.id === placeId);
 
+    const [formState, inputHandler] = useForm(
+        {
+            title: {
+                value: identifiedPlace.title,
+                isValid: true
+            },
+            description: {
+                value: identifiedPlace.description,
+                isValid: true
+            },
+            address: {
+                value: identifiedPlace.address,
+                isValid: true
+            }
+        },
+        true
+    );
+
+    const placeUpdateSubmitHandler = event => {
+        event.preventDefault();
+        console.log(formState.inputs);
+    };
+
     if (!identifiedPlace) {
         return (
             <div className="center">
@@ -49,7 +73,7 @@ const UpdatePlace = () => {
     }
 
     return (
-        <form className="place-form">
+        <form className="place-form" onSubmit={placeUpdateSubmitHandler}>
             <Input
                 id="title"
                 element="input"
@@ -57,9 +81,9 @@ const UpdatePlace = () => {
                 label="Название"
                 validators={[VALIDATOR_REQUIRE()]}
                 errorText="Введите название места"
-                onInput={() => { }}
-                value={identifiedPlace.title}
-                valid={true}
+                onInput={inputHandler}
+                value={formState.inputs.title.value}
+                valid={formState.inputs.title.isValid}
             />
             <Input
                 id="description"
@@ -67,9 +91,9 @@ const UpdatePlace = () => {
                 label="Описание"
                 validators={[VALIDATOR_MINLENGTH(10)]}
                 errorText="Введите описание места"
-                onInput={() => { }}
-                value={identifiedPlace.description}
-                valid={true}
+                onInput={inputHandler}
+                value={formState.inputs.description.value}
+                valid={formState.inputs.description.isValid}
             />
 
             <Input
@@ -78,11 +102,11 @@ const UpdatePlace = () => {
                 label="Адрес"
                 validators={[VALIDATOR_REQUIRE()]}
                 errorText="Введите адрес места"
-                onInput={() => { }}
-                value={identifiedPlace.address}
-                valid={true}
+                onInput={inputHandler}
+                value={formState.inputs.address.value}
+                valid={formState.inputs.address.isValid}
             />
-            <Button type="submit" disabled={true}>
+            <Button type="submit" disabled={!formState.isValid}>
                 Сохранить изменения
             </Button>
         </form>
