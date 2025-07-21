@@ -8,10 +8,25 @@ import './PlaceItem.css';
 
 const PlaceItem = props => {
   const [showMap, setShowMap] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const openMapHandler = () => setShowMap(true);
 
   const closeMapHandler = () => setShowMap(false);
+
+
+  const showDeleteWarningHandler = () => {
+    setShowConfirmModal(true);
+  };
+
+  const cancelDeleteHandler = () => {
+    setShowConfirmModal(false);
+  };
+
+  const confirmDeleteHandler = () => {
+    setShowConfirmModal(false);
+    console.log('Удаление...');
+  };
 
   return (
     <>
@@ -24,15 +39,36 @@ const PlaceItem = props => {
       >
         <div className="map-container">
           <YMaps query={{ lang: 'ru_RU' }}>
-            <Map defaultState={{ center: [props.location.lat, props.location.lng], zoom: 12 }} style={{width:"100%", height:"100%"}}/>
+            <Map defaultState={{ center: [props.location.lat, props.location.lng], zoom: 12 }} style={{ width: "100%", height: "100%" }} />
           </YMaps>
         </div>
+      </Modal>
+
+      <Modal
+        show={showConfirmModal}
+        onCancel={cancelDeleteHandler}
+        header="Вы уверены?"
+        footerClass="place-item__modal-actions"
+        footer={
+          <>
+            <Button inverse onClick={cancelDeleteHandler}>
+              Закрыть
+            </Button>
+            <Button danger onClick={confirmDeleteHandler}>
+              Удалить
+            </Button>
+          </>
+        }
+      >
+        <p>
+          Вы действительно хотите удалить это место? Обратите внимание, удаление нельзя отменить!
+        </p>
       </Modal>
 
       <li className="place-item">
         <Card className="place-item__content">
           <div className="place-item__image">
-            <img src={"/images/"+ props.image} />
+            <img src={"/images/" + props.image} />
           </div>
 
           <div className="place-item__info">
@@ -44,7 +80,7 @@ const PlaceItem = props => {
           <div className="place-item__actions">
             <Button inverse onClick={openMapHandler}>Посмотреть на карте</Button>
             <Button to={`/places/${props.id}`}>Изменить</Button>
-            <Button danger>Удалить</Button>
+            <Button danger onClick={showDeleteWarningHandler}>Удалить</Button>
           </div>
         </Card>
       </li>
