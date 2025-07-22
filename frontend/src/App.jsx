@@ -6,6 +6,7 @@ import NewPlace from "./places/pages/NewPlace";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import UserPlaces from "./places/pages/UserPlaces";
 import UpdatePlace from "./places/pages/UpdatePlace";
+import Auth from "./users/pages/Auth";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/:userId/places" element={<UserPlaces />} exact></Route>
           <Route path="/places/new" element={<NewPlace />} exact></Route>
           <Route path="/places/:placeId" element={<UpdatePlace />} exact></Route>
+          <Route path="/auth" element={<Auth />} exact></Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>
