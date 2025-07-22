@@ -47,7 +47,7 @@ const PlaceItem = props => {
       <Modal
         show={showConfirmModal}
         onCancel={cancelDeleteHandler}
-        header="Вы уверены?"
+        header={props.title}
         footerClass="place-item__modal-actions"
         footer={
           <>
