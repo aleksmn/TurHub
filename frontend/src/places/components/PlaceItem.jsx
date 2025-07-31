@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Card from '../../shared/components/UIElements/Card';
 import Button from '../../shared/components/FormElements/Button';
 import Modal from '../../shared/components/UIElements/Modal';
 import { YMaps, Map } from '@pbe/react-yandex-maps';
+import { AuthContext } from '../../shared/context/auth-context';
 
 import './PlaceItem.css';
 
 const PlaceItem = props => {
+  const auth = useContext(AuthContext);
   const [showMap, setShowMap] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
@@ -79,8 +81,12 @@ const PlaceItem = props => {
 
           <div className="place-item__actions">
             <Button inverse onClick={openMapHandler}>Посмотреть на карте</Button>
-            <Button to={`/places/${props.id}`}>Изменить</Button>
-            <Button danger onClick={showDeleteWarningHandler}>Удалить</Button>
+            {auth.isLoggedIn &&
+              <>
+                <Button to={`/places/${props.id}`}>Изменить</Button>
+                <Button danger onClick={showDeleteWarningHandler}>Удалить</Button>
+              </>
+            }
           </div>
         </Card>
       </li>
