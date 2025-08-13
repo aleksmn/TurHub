@@ -52,6 +52,10 @@ const UpdatePlace = () => {
             description: {
                 value: '',
                 isValid: false
+            },
+            address: {
+                value: '',
+                isValid: false
             }
         },
         false
