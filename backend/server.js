@@ -4,6 +4,8 @@ const app = express();
 const cors = require("cors");
 require("dotenv").config();
 
+const placesRoutes = require("./routes/places-routes");
+
 // middleware
 app.use(express.json());
 app.use(cors({
@@ -20,7 +22,12 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
     console.log(err);
 });
 
-// route
-app.get("/", (req, res) => {
-    res.status(201).json({message: "Connected to Backend!"});
-});
+// test route
+// app.get("/", (req, res) => {
+//     res.status(201).json({message: "Connected to Backend!"});
+// });
+
+app.use(placesRoutes);
+
+
+
