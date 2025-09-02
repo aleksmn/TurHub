@@ -22,12 +22,14 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
     console.log(err);
 });
 
-// test route
-// app.get("/", (req, res) => {
-//     res.status(201).json({message: "Connected to Backend!"});
-// });
 
-app.use(placesRoutes);
+// test route
+app.get("/", (req, res) => {
+    res.status(201).json({message: "Connected to Backend!"});
+});
+
+
+app.use('/api/places', placesRoutes);
 
 
 

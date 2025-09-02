@@ -63,7 +63,7 @@ function App() {
             {routes}
           </Routes>
         </main>
-        {/* {console.log(message)} */}
+        {console.log(message)}
       </BrowserRouter>
     </AuthContext.Provider>
   );
