@@ -1,5 +1,7 @@
 const express = require("express");
 
+const HttpError = require('../models/http-error');
+
 const router = express.Router();
 
 const PLACES = [
@@ -30,38 +32,36 @@ const PLACES = [
 
 ];
 
+
 router.get('/:pid', (req, res, next) => {
-    const placeId = req.params.pid; // { pid: 'p1' }
+  const placeId = req.params.pid; // { pid: 'p1' }
 
-    const place = PLACES.find(p => {
-        return p.id === placeId;
-    });
+  const place = PLACES.find(p => {
+    return p.id === placeId;
+  });
 
-    if (!place) {
-        const error = new Error('Could not find a place for the provided id.');
-        error.code = 404;
-        throw error;
-    }
+  if (!place) {
+    throw new HttpError('Could not find a place for the provided id.', 404);
+  }
 
-    res.json({ place }); // => { place } => { place: place }
+  res.json({ place }); // => { place } => { place: place }
 });
 
 router.get('/user/:uid', (req, res, next) => {
-    const userId = req.params.uid;
+  const userId = req.params.uid;
 
-    const place = PLACES.find(p => {
-        return p.creator === userId;
-    });
+  const place = PLACES.find(p => {
+    return p.creator === userId;
+  });
 
-    if (!place) {
-        const error = new Error('Could not find a place for the provided user id.');
-        error.code = 404;
-        return next(error);
-    }
+  if (!place) {
+    return next(
+      new HttpError('Could not find a place for the provided user id.', 404)
+    );
+  }
 
-    res.json({ place });
+  res.json({ place });
 });
 
 module.exports = router;
-
 
