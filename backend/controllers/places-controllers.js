@@ -42,8 +42,6 @@ const getPlaceById = (req, res, next) => {
   res.json({ place }); // => { place } => { place: place }
 };
 
-// function getPlaceById() { ... }
-// const getPlaceById = function() { ... }
 
 const getPlaceByUserId = (req, res, next) => {
   const userId = req.params.uid;
