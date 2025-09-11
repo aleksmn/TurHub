@@ -11,7 +11,7 @@ const PLACES = [
         address: 'остров Ореховый, Шлиссельбург, Ленинградская область',
         location: {
             lat: 59.953919,
-            lng:  31.039322,
+            lng: 31.039322,
         },
         creator: 'u1'
     },
@@ -30,17 +30,38 @@ const PLACES = [
 
 ];
 
-router.get("/:pid", (req, res, next) => {
-    const placeId = req.params.pid; 
-    const place = PLACES.find(p => p.id === placeId);
-    if (!place){
-        return res.status(404).json({message:"Place not found"})
+router.get('/:pid', (req, res, next) => {
+    const placeId = req.params.pid; // { pid: 'p1' }
+
+    const place = PLACES.find(p => {
+        return p.id === placeId;
+    });
+
+    if (!place) {
+        const error = new Error('Could not find a place for the provided id.');
+        error.code = 404;
+        throw error;
     }
-    console.log("GET request in places by id")
-    res.json(place);
-})
+
+    res.json({ place }); // => { place } => { place: place }
+});
+
+router.get('/user/:uid', (req, res, next) => {
+    const userId = req.params.uid;
+
+    const place = PLACES.find(p => {
+        return p.creator === userId;
+    });
+
+    if (!place) {
+        const error = new Error('Could not find a place for the provided user id.');
+        error.code = 404;
+        return next(error);
+    }
+
+    res.json({ place });
+});
 
 module.exports = router;
-
 
 
