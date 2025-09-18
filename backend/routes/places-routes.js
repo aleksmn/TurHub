@@ -1,13 +1,13 @@
-const express = require('express');
+import { Router } from 'express';
 
-const placesControllers = require('../controllers/places-controllers');
+import { getPlaceById, getPlaceByUserId, createPlace } from '../controllers/places-controllers.js';
 
-const router = express.Router();
+const router = Router();
 
-router.get('/:pid', placesControllers.getPlaceById);
+router.get('/:pid', getPlaceById);
 
-router.get('/user/:uid', placesControllers.getPlaceByUserId);
+router.get('/user/:uid', getPlaceByUserId);
 
-router.post('/', placesControllers.createPlace);
+router.post('/', createPlace);
 
-module.exports = router;
+export default router;

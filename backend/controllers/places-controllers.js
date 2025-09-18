@@ -1,9 +1,6 @@
-const HttpError = require('../models/http-error');
-const { v4: uuid } = require('uuid');
+import { v4 as uuid } from 'uuid';
 
-
-
-
+import HttpError from '../models/http-error.js';
 
 const PLACES = [
   {
@@ -76,11 +73,14 @@ const createPlace = (req, res, next) => {
     creator
   };
 
-  PLACES.push(createdPlace);  
+  PLACES.push(createdPlace);
 
   res.status(201).json({ place: createdPlace });
 };
 
-exports.getPlaceById = getPlaceById;
-exports.getPlaceByUserId = getPlaceByUserId;
-exports.createPlace = createPlace;
+const _getPlaceById = getPlaceById;
+export { _getPlaceById as getPlaceById };
+const _getPlaceByUserId = getPlaceByUserId;
+export { _getPlaceByUserId as getPlaceByUserId };
+const _createPlace = createPlace;
+export { _createPlace as createPlace };
