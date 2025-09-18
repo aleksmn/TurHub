@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from 'dotenv';
 
 import placesRoutes from "./routes/places-routes.js";
+import HttpError from "./models/http-error.js";
 
 
 dotenv.config();
@@ -30,15 +31,20 @@ connect(process.env.MONGODB_URI).then(() => {
 
 // test route
 app.get("/", (req, res) => {
-    res.status(201).json({message: "Connected to Backend!"});
+    res.status(201).json({ message: "Connected to Backend!" });
 });
 
 app.use('/api/places', placesRoutes);
 
+app.use((req, res, next) => {
+    const error = new HttpError("Could not find this route", 404);
+    throw error;
+})
+
 app.use((error, req, res, next) => {
-  if (res.headerSent) {
-    return next(error);
-  }
-  res.status(error.code || 500)
-  res.json({message: error.message || 'An unknown error occurred!'});
+    if (res.headerSent) {
+        return next(error);
+    }
+    res.status(error.code || 500)
+    res.json({ message: error.message || 'An unknown error occurred!' });
 });
