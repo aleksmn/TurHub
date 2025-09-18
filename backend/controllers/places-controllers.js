@@ -77,3 +77,20 @@ export const createPlace = (req, res, next) => {
 
   res.status(201).json({ place: createdPlace });
 };
+
+
+export const updatePlace = (req, res, next) => {
+  const { title, description } = req.body;
+  const placeId = req.params.pid;
+
+  const updatedPlace = { ...PLACES.find(p => p.id === placeId) };
+  const placeIndex = PLACES.findIndex(p => p.id === placeId);
+  updatedPlace.title = title;
+  updatedPlace.description = description;
+
+  PLACES[placeIndex] = updatedPlace;
+
+  res.status(200).json({ place: updatedPlace });
+};
+
+export const deletePlace = (req, res, next) => { };
