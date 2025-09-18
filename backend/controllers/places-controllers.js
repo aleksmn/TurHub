@@ -30,7 +30,7 @@ const PLACES = [
 
 ];
 
-const getPlaceById = (req, res, next) => {
+export const getPlaceById = (req, res, next) => {
   const placeId = req.params.pid; // { pid: 'p1' }
 
   const place = PLACES.find(p => {
@@ -45,7 +45,7 @@ const getPlaceById = (req, res, next) => {
 };
 
 
-const getPlaceByUserId = (req, res, next) => {
+export const getPlaceByUserId = (req, res, next) => {
   const userId = req.params.uid;
 
   const place = PLACES.find(p => {
@@ -61,7 +61,7 @@ const getPlaceByUserId = (req, res, next) => {
   res.json({ place });
 };
 
-const createPlace = (req, res, next) => {
+export const createPlace = (req, res, next) => {
   const { title, description, coordinates, address, creator } = req.body;
   // const title = req.body.title;
   const createdPlace = {
@@ -77,10 +77,3 @@ const createPlace = (req, res, next) => {
 
   res.status(201).json({ place: createdPlace });
 };
-
-const _getPlaceById = getPlaceById;
-export { _getPlaceById as getPlaceById };
-const _getPlaceByUserId = getPlaceByUserId;
-export { _getPlaceByUserId as getPlaceByUserId };
-const _createPlace = createPlace;
-export { _createPlace as createPlace };
