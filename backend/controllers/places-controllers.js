@@ -48,7 +48,7 @@ export const getPlaceById = (req, res, next) => {
 export const getPlaceByUserId = (req, res, next) => {
   const userId = req.params.uid;
 
-  const place = PLACES.find(p => {
+  const place = PLACES.filter(p => {
     return p.creator === userId;
   });
 
