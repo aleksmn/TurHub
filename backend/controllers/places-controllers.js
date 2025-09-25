@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 
 import HttpError from '../models/http-error.js';
 
-const PLACES = [
+let PLACES = [
   {
     id: 'p1',
     title: 'Крепость Орешек',
@@ -93,4 +93,8 @@ export const updatePlace = (req, res, next) => {
   res.status(200).json({ place: updatedPlace });
 };
 
-export const deletePlace = (req, res, next) => { };
+export const deletePlace = (req, res, next) => {
+  const placeId = req.params.pid;
+  PLACES = PLACES.filter(p => p.id !== placeId);
+  res.status(200).json({ message: 'Deleted place.' });
+};
