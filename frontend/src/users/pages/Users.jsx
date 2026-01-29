@@ -5,25 +5,25 @@ const Users = () => {
     {
       id: 'u1',
       name: 'Дмитрий',
-      image: 'https://randomuser.me/api/portraits/men/81.jpg',
+      image: 'user-1.png',
       places: 3
     },
     {
       id: 'u2',
       name: 'Василий',
-      image: 'https://randomuser.me/api/portraits/men/82.jpg',
+      image: 'user-2.png',
       places: 5
     },
     {
       id: 'u3',
       name: 'Степан',
-      image: 'https://randomuser.me/api/portraits/men/85.jpg',
+      image: 'user-3.png',
       places: 4
     },
     {
       id: 'u4',
       name: 'Юлия',
-      image: 'https://randomuser.me/api/portraits/women/84.jpg',
+      image: 'user-4.png',
       places: 10
     },
   ]
