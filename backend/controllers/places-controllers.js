@@ -3,6 +3,8 @@ import { validationResult } from 'express-validator';
 
 import HttpError from '../models/http-error.js';
 
+import Place from '../models/place.js';
+
 let PLACES = [
     {
         id: 'p1',
@@ -62,24 +64,33 @@ export const getPlaceByUserId = (req, res, next) => {
     res.json({ place });
 };
 
-export const createPlace = (req, res, next) => {
+export const createPlace = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         // console.log(errors);
         throw new HttpError('Invalid inputs passed, please check your data.', 422);
     }
-    const { title, description, coordinates, address, creator } = req.body;
+    const { title, description, location, address, creator } = req.body;
     // const title = req.body.title;
-    const createdPlace = {
-        id: uuid(),
+    const createdPlace = new Place({
         title,
         description,
-        location: coordinates,
         address,
+        location,
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Empire_State_Building_%28aerial_view%29.jpg/400px-Empire_State_Building_%28aerial_view%29.jpg',
         creator
-    };
+    });
 
-    PLACES.push(createdPlace);
+    try {
+        await createdPlace.save();
+    } catch (err) {
+        const error = new HttpError(
+            'Creating place failed, please try again.',
+            500
+        );
+        console.log(err);
+        return next(error);
+    }
 
     res.status(201).json({ place: createdPlace });
 };
